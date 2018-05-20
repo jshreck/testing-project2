@@ -1,0 +1,40 @@
+{{#section 'css'}}
+
+<link rel="stylesheet" type="text/css" href="/assets/css/style.default.css"> 
+{{/section}}
+
+
+<!-- NAVABAR -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        PUT NAVBAR LINKS HERE
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+{{!-- BLOG POST --}}
+<div class="container">
+    {{#each blogPost}}
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{title}}</h3>
+                </div>
+                <div class="panel-body">
+                    {{body}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+
+{{!-- 
+    {{#listItem 0 3 blogPosts}}
+{{> blogPosts}}
+
+{{/listItem}}
+</div> --}}
+
+

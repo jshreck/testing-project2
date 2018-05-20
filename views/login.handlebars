@@ -1,0 +1,60 @@
+{{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="/css/login.css"> {{/section}} {{#section 'js'}}
+<script type="text/javascript" src="/js/login.js"></script> {{/section}}
+
+<button class="tablink" onclick="openPage('Sign-Up', this, 'gray')">Sign-Up</button>
+<button class="tablink" onclick="openPage('Sign-In', this, 'gray')" id="defaultOpen">Sign-In</button>
+
+
+{{!-- SIGN UP --}}
+<div id="Sign-Up" class="tabcontent">
+  <div class="container">
+    <div class="row">
+      <h1>BLOGGIN'</h1>
+      <h2>Sign Up</h2>
+      {{!-- <form method="POST" action="/api/newUser"> --}}
+      <form id="signupForm">
+        <div class="form-group">
+          <label for="createUser">Username:</label>
+          <input class="form-control" type="text" placeholder="Create Username" name="newUsername">
+        </div>
+        <div class="form-group">
+          <label for="createEmail">Email address:</label>
+          <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" name="newEmail">
+        </div>
+        <div class="form-group">
+          <label for="createPass">Create Password</label>
+          <input type="password" class="form-control" placeholder="Create Password" name="newPassword1">
+        </div>
+        <div class="form-group">
+          <label for="createPass">Create Password</label>
+          <input type="password" class="form-control" placeholder="Create Password" name="newPassword2">
+        </div>
+        <button type="submit" class="btn btn-primary" id="signupSubmit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+
+{{!-- SIGN IN --}}
+<div id="Sign-In" class="tabcontent">
+  <div class="container">
+    <div class="row">
+      <h1>BLOGGIN'</h1>
+      <h2>Sign In</h2>
+      <form id="signinForm">
+        <div class="form-group">
+          <label for="userName">Username</label>
+          <input class="form-control" type="text" placeholder="Enter Username" name="username">
+        </div>
+        <div class="form-group">
+          <label for="passWord">Enter Password</label>
+          <input type="password" class="form-control" placeholder="Password" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary" id="signinSubmit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
