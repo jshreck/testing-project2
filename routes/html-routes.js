@@ -1,7 +1,7 @@
 var db = require("../models");
 
-module.exports = function(app) {
-    //flogin page
+module.exports = function (app) {
+    //login page
     app.get("/", (req, res) => {
         res.render("login");
     });
@@ -20,11 +20,11 @@ module.exports = function(app) {
         res.render("blogSpace");
     });
 
-    
+
 
     //templates (examples)
     app.get("/template/:id", (req, res) => {
-      
+
         template = "template" + req.params.id;
 
         //just using for example
@@ -35,12 +35,12 @@ module.exports = function(app) {
                 body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, ipsa voluptas delectus sed assumenda voluptates, ab adipisci perspiciatis earum magnam fugit quasi culpa repellendus totam in, unde neque sapiente quod praesentium nisi rerum enim laudantium aliquam. Dolore nobis quis, quas quam reiciendis. Nisi, minus quo accusamus. Perferendis tempore ducimus blanditiis quo error, nemo temporibus aperiam harum vero asperiores vitae magnam et dolores repudiandae exercitationem voluptatibus veniam rerum voluptas architecto alias culpa dolorem incidunt quasi fuga. Fugit amet totam modi, optio a quae architecto odio, officia ipsam, autem dolore dignissimos."
             }, {
                 title: "Post2",
-                body:  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, ipsa voluptas delectus sed assumenda voluptates, ab adipisci perspiciatis earum magnam fugit quasi culpa repellendus totam in, unde neque sapiente quod praesentium nisi rerum enim laudantium aliquam. Dolore nobis quis, quas quam reiciendis. Nisi, minus quo accusamus. Perferendis tempore ducimus blanditiis quo error, nemo temporibus aperiam harum vero asperiores vitae magnam et dolores repudiandae exercitationem voluptatibus veniam rerum voluptas architecto alias culpa dolorem incidunt quasi fuga. Fugit amet totam modi, optio a quae architecto odio, officia ipsam, autem dolore dignissimos."
+                body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, ipsa voluptas delectus sed assumenda voluptates, ab adipisci perspiciatis earum magnam fugit quasi culpa repellendus totam in, unde neque sapiente quod praesentium nisi rerum enim laudantium aliquam. Dolore nobis quis, quas quam reiciendis. Nisi, minus quo accusamus. Perferendis tempore ducimus blanditiis quo error, nemo temporibus aperiam harum vero asperiores vitae magnam et dolores repudiandae exercitationem voluptatibus veniam rerum voluptas architecto alias culpa dolorem incidunt quasi fuga. Fugit amet totam modi, optio a quae architecto odio, officia ipsam, autem dolore dignissimos."
 
             },
             {
                 title: "Post3",
-                body:  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, ipsa voluptas delectus sed assumenda voluptates, ab adipisci perspiciatis earum magnam fugit quasi culpa repellendus totam in, unde neque sapiente quod praesentium nisi rerum enim laudantium aliquam. Dolore nobis quis, quas quam reiciendis. Nisi, minus quo accusamus. Perferendis tempore ducimus blanditiis quo error, nemo temporibus aperiam harum vero asperiores vitae magnam et dolores repudiandae exercitationem voluptatibus veniam rerum voluptas architecto alias culpa dolorem incidunt quasi fuga. Fugit amet totam modi, optio a quae architecto odio, officia ipsam, autem dolore dignissimos."
+                body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, ipsa voluptas delectus sed assumenda voluptates, ab adipisci perspiciatis earum magnam fugit quasi culpa repellendus totam in, unde neque sapiente quod praesentium nisi rerum enim laudantium aliquam. Dolore nobis quis, quas quam reiciendis. Nisi, minus quo accusamus. Perferendis tempore ducimus blanditiis quo error, nemo temporibus aperiam harum vero asperiores vitae magnam et dolores repudiandae exercitationem voluptatibus veniam rerum voluptas architecto alias culpa dolorem incidunt quasi fuga. Fugit amet totam modi, optio a quae architecto odio, officia ipsam, autem dolore dignissimos."
 
             }]
         }
@@ -50,9 +50,10 @@ module.exports = function(app) {
 
     //to get a user's blog (for now using userID)
     app.get("/blogs/:username", (req, res) => {
-        var username= req.params.username
+        var username = req.params.username;
         var template;
         var hbsObj;
+        var userID;
 
         //get user
         db.User.findOne({
@@ -61,23 +62,24 @@ module.exports = function(app) {
             }
             //get user's chosen template
         }).then((user) => {
-            console.log(user.username);
-            var template = "template" + User.template;
-        //get user's blog posts
+            console.log(user.dataValues);
+            template = "template" + user.dataValues.template;
+            console.log("template" + template);
+            userID = user.dataValues.id;
+            console.log("userID: " + userID);
+            //get user's blog posts
         }).then(() => {
             db.BlogPost.findAll({
                 where: {
-                    userId: userID
+                    UserID: userID
                 }
-            }).then((Posts) => {
+            }).then((blogPost) => {
                 var hbsObj = {
-                    blogPost: Posts
-                }
+                    blogPost
+                };
+                res.render(template, hbsObj);
             });
-        //render blog posts in chosen template
-        }).then(() => {
-            res.render(template, hbsObj);
         });
     });
-};
+}
 

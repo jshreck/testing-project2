@@ -20,10 +20,10 @@ module.exports = function (sequelize, DataTypes) {
                     msg: 'Please enter a valid email'
                 }
             },
-            template: {
-                type: DataTypes.INTEGER,
-                defaultValue: 0 
-            }
+        },
+        template: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
         }
     });
 
