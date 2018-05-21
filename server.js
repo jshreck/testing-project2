@@ -42,6 +42,7 @@ app.use(methodOverride('_method'));
 // Import routes and give the server access to them
 require("./routes/html-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
+require("./routes/blog-api-routes.js")(app);
 
 //added the db require for models and sync with promise
 db.sequelize.sync().then(function() {

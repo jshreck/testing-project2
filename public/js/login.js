@@ -67,23 +67,4 @@ $("document").ready(() => {
 
 });
 
-
-
-
-
-    //==============================
-
-    //             if(data!="Nothing"){ 
-    //                 console.log("Not Nothing"); 
-    //                 sessionStorage.name = data.name; 
-    //                 sessionStorage.password = data.password;
-    //                 //route to after sign in
-    //                 window.location.replace("/welcome");
-
-    //             }
-
-    //         }); 
-    //     });
-
-//+++++++++++++++++++++++++++    
-// });
+ 

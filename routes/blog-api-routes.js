@@ -3,14 +3,14 @@ var db = require("../models");
 module.exports = function (app) {
     //creating blog post
     app.post("api/newPost", (req, res) => {
-        db.blogPost.create(req.body).then((newPost) => {
+        db.BlogPost.create(req.body).then((newPost) => {
             res.json(newPost);
         });
     });
 
     //updating blog post
     app.put("api/update/:postID", (req, res) => {
-        db.blogPost.update(
+        db.BlogPost.update(
             req.body,
             {
                 where: {
@@ -22,13 +22,14 @@ module.exports = function (app) {
     });
 
     //deleting blog post
-    app.delete("api/delete/:postID", (req, res) => {
-        db.blogPost.destroy({
+    app.delete("/api/delete/:postID", (req, res) => {
+
+        db.BlogPost.destroy({
             where: {
-                id: req.params.id
+                id: req.params.postID
             }
-        }).then((blogPost) => {
-            res.json(blogPost);
+        }).then((numDeleted) => {
+            res.status(200).send("success");
         });
     });
 

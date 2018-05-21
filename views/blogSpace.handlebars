@@ -1,37 +1,23 @@
-   
-{{#section 'css'}}
-<link rel="stylesheet" type="text/css" href="/css/blogspace.css"> 
-{{/section}}
+ {{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="/css/blogSpace.css"> {{/section}} {{#section 'js'}}
+<script type="text/javascript" src="/js/blogSpace.js"></script> {{/section}}
 
-{{#section 'js'}}
-<script type="text/javascript" src="/js/blogspace.js"/></script>
-{{/section}}
+<button type="button" class="btn btn-default" data-userid="{{userID}}" id="create">new post</button>
 
+{{#each blogPost}}
 
-
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-            <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""> BLOGGIN'
-        </a>
-    </nav>
-
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">Welcome to your blog space, {{name}}</h1>
-            <p class="lead">WELCOME TO YOUR BLOG SPACE...FEEL FREE TO CREATE</p>
+<div class="list-group" id="{{id}}">
+    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{title}}</h5>
+            <small>createdat: {{createdAt}} updated at: {{updatedAt}}</small>
         </div>
-    </div>
-    <button type="button" class="btn btn-primary btn-lg btn-block">CREATE A BLOG</button>
-    <button type="button" class="btn btn-secondary btn-lg btn-block">MANAGE BLOGS</button>
-    <label for="#listGroup">Recent Blog Posts</label>
-    {{#each blogPost}}
-    <div class="list-group" id="listGroup">
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{this.title}}</h5>
-                <small>{{this.createdAt}}</small>
-            </div>
-            <p class="mb-1">{{this.body}}</small>
-        </a>
-    </div>
-    {{/each}}
+        <div>
+            <button type="button" class="btn btn-default edit" data-postid="{{id}}">view/edit</button>
+            <button type="button" class="btn btn-default delete" data-postid="{{id}}">delete</button>
+
+        </div>
+        <p class="mb-1">id = {{id}}</small>
+    </a>
+</div>
+{{/each}}
