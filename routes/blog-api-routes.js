@@ -2,28 +2,33 @@ var db = require("../models");
 
 module.exports = function (app) {
 
-    //creating blog post =============================NOT YET TESTED
-    app.post("api/newPost", (req, res) => {
-        //NEED TO GET TITLE, BODY, USERID IN REQ
+    //creating blog post
+    app.post("/api/newPost/:userID", (req, res) => {
+        console.log(req.body);
+
         db.BlogPost.create(
             {
                 title: req.body.title,
                 body: req.body.body,
-                UserId: req.body.userID
+                UserId: req.params.userID
             }
         ).then((newPost) => {
             res.json(newPost);
-        });
+        })
+            .catch((err) => {
+                console.log(err.errors[0].message);
+                res.status(500).send(err.errors[0].message);
+            });
     });
 
     //updating blog post ===========================NOT YET TESTED
-    app.put("api/update/:postID", (req, res) => {
+    app.put("/api/update/:postID", (req, res) => {
         // NEED TITLE AND BODY
         db.BlogPost.update({
             title: title,
             body: body,
             where: {
-                id: req.params.id,
+                id: req.params.postID,
             }
         }).then((updatedPost) => {
             res.json(updatedPost);
@@ -43,7 +48,7 @@ module.exports = function (app) {
     });
 
     //choosing template ===================================NOT YET TESTED
-    app.put("api/template/:templateID", (req, res) => {
+    app.put("/api/template/:templateID", (req, res) => {
         // NEED USER ID (id)
         db.User.update({
             template: req.params.templateID,

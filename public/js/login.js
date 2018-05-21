@@ -56,7 +56,7 @@ $(document).ready(() => {
         $.post("/api/login", data).then((response) => {
             //if successful, redirects to blogspace
             console.log(response);
-                sessionStorage.setItem("loggedIn", username);
+                sessionStorage.loggedIn = username;
                 window.location.replace("/blogspace/" + sessionStorage.loggedIn);
         })
             .catch((err) => {

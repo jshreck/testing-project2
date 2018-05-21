@@ -77,7 +77,6 @@ module.exports = function (app) {
 
         //find userid where user name then
         var username = req.params.username;
-        var template;
         var hbsObj;
         var userID;
 
@@ -99,10 +98,42 @@ module.exports = function (app) {
             }).then((blogPost) => {
                 var hbsObj = {
                     blogPost,
-                    userID
+                    userID,
+                    username
                 };
                 res.render("blogSpace", hbsObj);
             });
+        });
+    });
+
+
+    //pg to newPost
+    app.get("/blogspace/:username/newPost", (req, res) => {
+        //need check to make sure user is logged in in order to view this
+
+        var username = req.params.username;
+
+        //find userid where user name then
+        var username = req.params.username;
+        var hbsObj;
+        var userID;
+
+        //get user
+        db.User.findOne({
+            where: {
+                username: username
+            }
+            //get user's id
+        }).then((user) => {
+            userID = user.dataValues.id;
+            console.log("userID: " + userID);
+    
+        }).then(() => {
+            var hbsObj = {
+                userID,
+                username
+            };
+            res.render("newPost", hbsObj);
         });
     });
 }

@@ -2,7 +2,9 @@
 <link rel="stylesheet" type="text/css" href="/css/blogSpace.css"> {{/section}} {{#section 'js'}}
 <script type="text/javascript" src="/js/blogSpace.js"></script> {{/section}}
 
-<button type="button" class="btn btn-default" data-userid="{{userID}}" id="create">new post</button>
+{{username}}
+
+<a href="/blogspace/{{username}}/newPost"><button type="button" class="btn btn-default" data-userid="{{userID}}" id="create">new post</button></a>
 
 {{#each blogPost}}
 
@@ -17,7 +19,7 @@
             <button type="button" class="btn btn-default delete" data-postid="{{id}}">delete</button>
 
         </div>
-        <p class="mb-1">id = {{id}}</small>
+        </small>
     </a>
 </div>
 {{/each}}

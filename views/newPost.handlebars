@@ -1,0 +1,16 @@
+ {{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="/css/newPost.css"> {{/section}} {{#section 'js'}}
+<script type="text/javascript" src="/js/newPost.js"></script> {{/section}}
+
+{{username}}
+<form id="createPostForm">
+<div class="input-group">
+  <input type="text" class="form-control" placeholder="Title" name="title">
+</div>
+
+<div class="input-group">
+  <input type="textarea" class="form-control" name="body">
+</div>
+
+<button type="button" class="btn btn-default" data-userid="{{userID}}" id="createPostSubmit">Create Post</button>
+</form>

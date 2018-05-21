@@ -29,7 +29,7 @@ module.exports = function (app) {
         console.log(req.body);
         db.User.findOne({
             where: {
-                username: req.body.username,
+                username: req.body.username.toLowerCase(),
                 password: req.body.password
             }
         }).then(function (user) {
