@@ -13,7 +13,7 @@ function openPage(pageName, elmnt, color) {
 
 }
 
-$("document").ready(() => {
+$(document).ready(() => {
     // Get the element with id="defaultOpen" and click on it
     $("#defaultOpen").click();
 
