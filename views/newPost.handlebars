@@ -2,7 +2,8 @@
 <link rel="stylesheet" type="text/css" href="/css/newPost.css"> {{/section}} {{#section 'js'}}
 <script type="text/javascript" src="/js/newPost.js"></script> {{/section}}
 
-{{username}}
+<div id="username" data-username="{{username}}">{{username}}</div>
+
 <form id="createPostForm">
 <div class="input-group">
   <input type="text" class="form-control" placeholder="Title" name="title">
@@ -14,3 +15,5 @@
 
 <button type="button" class="btn btn-default" data-userid="{{userID}}" id="createPostSubmit">Create Post</button>
 </form>
+
+<a href="/blogspace/{{username}}"><button type="button" class="btn btn-default">Back to My Blogspace</button></a>
