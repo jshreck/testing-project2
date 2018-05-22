@@ -35,6 +35,7 @@ module.exports = function (app) {
                 }
             }).then((blogPost) => {
                 var hbsObj = {
+                    username,
                     blogPost
                 };
                 res.render(template, hbsObj);

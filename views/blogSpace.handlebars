@@ -2,24 +2,49 @@
 <link rel="stylesheet" type="text/css" href="/css/blogSpace.css"> {{/section}} {{#section 'js'}}
 <script type="text/javascript" src="/js/blogSpace.js"></script> {{/section}}
 
-{{username}}
 
-<a href="/blogspace/{{username}}/newPost"><button type="button" class="btn btn-default" data-userid="{{userID}}" id="create">new post</button></a>
+<div class="container">
+    <div class="row textcenter">
+        <div class="col-sm-8 offset-sm-2">
+            <div class="jumbotron">
+                <div class="image">
+                    <img src="/images/bloggin-logo.png" class="img-fluid">
+                </div>
+                <div>
+                    <hr class="my-4">
+                    <h1>{{username}}</h1>
+                    <p>
+                        <a href="/blogspace/{{username}}/newPost">
+                            <button type="button" class="btn btn-default" data-userid="{{userID}}" id="create">New Post</button>
+                        </a>
+                        <a href="/blogs/{{username}}">
+                            <button type="button" class="btn btn-default" data-userid="{{userID}}" id="create">View MyBlog</button>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            {{!-- BLOG POST --}}
+            <div class="row">
+                <div class="col-sm-12">
+                    {{#each blogPost}}
+                    <div class="list-group" id="{{id}}">
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{title}}</h5>
+                            </div>
+                            <div>
+                                <p>Createdat: {{createdAt}}</p>
+                                <p>Updated at: {{updatedAt}}</p>
+                                <button type="button" class="btn btn-default edit" data-postid="{{id}}">view/edit</button>
+                                <button type="button" class="btn btn-default delete" data-postid="{{id}}">delete</button>
 
-{{#each blogPost}}
-
-<div class="list-group" id="{{id}}">
-    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-        <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{title}}</h5>
-            <small>createdat: {{createdAt}} updated at: {{updatedAt}}</small>
+                            </div>
+                            </small>
+                        </a>
+                    </div>
+                    <br> {{/each}}
+                </div>
+            </div>
         </div>
-        <div>
-            <button type="button" class="btn btn-default edit" data-postid="{{id}}">view/edit</button>
-            <button type="button" class="btn btn-default delete" data-postid="{{id}}">delete</button>
-
-        </div>
-        </small>
-    </a>
+    </div>
 </div>
-{{/each}}
