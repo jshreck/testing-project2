@@ -28,11 +28,12 @@ $(document).ready(() => {
         event.preventDefault();
 
         var userID = $(clicked.currentTarget).data("userid");
+        var templateID = $(clicked.currentTarget).data("template");
 
         console.log("userID " + userID);
 
         $.ajax({
-            url:`/api/${userID}/template/1">`,
+            url:`/api/${userID}/template/${templateID}">`,
             type: "PUT",
         }).then((response) => {
             console.log(response);
