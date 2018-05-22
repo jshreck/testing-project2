@@ -50,6 +50,7 @@ module.exports = function (app) {
 
         //just using for example
         var hbsObj = {
+            username: "username",
             blogPost: [{
                 title: "Post 1",
 
