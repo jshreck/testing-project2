@@ -20,18 +20,25 @@ $(document).ready(() => {
             $(`#${postID}`).remove();
 
         });
-
     });
+
+
+    $(document).on("click", "#template1", (clicked) => {
+
+        event.preventDefault();
+
+        var userID = $(clicked.currentTarget).data("userid");
+
+        console.log("userID " + userID);
+
+        $.ajax({
+            url:`/api/${userID}/template/1">`,
+            type: "PUT",
+        }).then((response) => {
+            console.log(response);
+        });
+    });
+
 });
-// $("#create").on("click", function () {
 
-//     event.preventDefault();
-// //create new blogPost
-// });
-
-// $("#edit").on("click", function () {
-
-//     event.preventDefault();
-// //edit blogPost
-// });
 

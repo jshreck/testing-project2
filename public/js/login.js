@@ -38,6 +38,7 @@ $(document).ready(() => {
         //sends form data
         $.post("/api/newUser", data).then((response) => {
             console.log(response);
+            $("#defaultOpen").click();
         })
             .catch((err) => {
                 alert(err.responseText);

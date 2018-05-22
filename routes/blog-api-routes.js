@@ -48,16 +48,16 @@ module.exports = function (app) {
     });
 
     //choosing template ===================================NOT YET TESTED
-    app.put("/api/template/:templateID", (req, res) => {
-        // NEED USER ID (id)
-        db.User.update({
-            template: req.params.templateID,
-            where: {
-                id: id,
-            }
-        }).then((user) => {
-            res.json(user);
-        });
-    });
+    app.put("/api/:userID/template/:templateID", (req, res) => {
 
+        db.User.find({ where: { id: req.params.userID } })
+            .then((user) => {
+                user.updateAttributes({
+                    template: parseInt(req.params.templateID)
+                }).then((user) => {
+                    res.json(user);
+                });
+            });
+
+    });
 }
